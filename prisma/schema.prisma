@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  password    String
+  name        String
+  role        Role
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  services    Service[] @relation("FreelancerServices") // Serviços criados pelo freelancer
+  projects    Project[] @relation("ClientProjects")     // Projetos contratados pelo cliente
+  messages    Message[] @relation("UserMessages")       // Mensagens enviadas pelo usuário
+  reviews     Review[]  @relation("FreelancerReviews")  // Avaliações recebidas (se freelancer)
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  price       Float
+  category    String
+  createdAt   DateTime @default(now())
+  freelancer  User     @relation("FreelancerServices", fields: [freelancerId], references: [id])
+  freelancerId Int
+  projects    Project[] // Projetos associados a este serviço
+}
+
+model Project {
+  id          Int          @id @default(autoincrement())
+  client      User         @relation("ClientProjects", fields: [clientId], references: [id])
+  clientId    Int
+  service     Service      @relation(fields: [serviceId], references: [id])
+  serviceId   Int
+  status      ProjectStatus @default(PENDING)
+  createdAt   DateTime      @default(now())
+  messages    Message[]     // Mensagens trocadas no projeto
+  reviews     Review?       // Avaliação do cliente sobre o freelancer
+  transaction Transaction?  @relation // Adicionado para correspondência
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  content    String
+  sender     User     @relation("UserMessages", fields: [senderId], references: [id])
+  senderId   Int
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  Int
+  createdAt  DateTime @default(now())
+}
+
+model Transaction {
+  id         Int      @id @default(autoincrement())
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  Int      @unique
+  amount     Float
+  status     TransactionStatus
+  createdAt  DateTime @default(now())
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId Int      @unique
+  freelancer User     @relation("FreelancerReviews", fields: [freelancerId], references: [id])
+  freelancerId Int
+  rating     Int      @default(0) // Avaliação (0-5 estrelas)
+  comment    String?
+  createdAt  DateTime @default(now())
+}
+
+enum Role {
+  CLIENT
+  FREELANCER
+}
+
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
