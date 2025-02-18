@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Um projeto pessoal com a iniciativa de criar uma plataforma moderna e inteligente, potencialmente integrando IA, para conectar profissionais autônomos e clientes em todo o território brasileiro.
 
-## Getting Started
+Deploy with Vercel
 
-First, run the development server:
+✨ Sobre o Projeto
+O FreelaConnect nasceu da necessidade de unir talentos brasileiros de forma eficiente e tecnológica. Nosso diferencial:
 
-```bash
+Match inteligente entre habilidades e demandas
+
+Sistema de recomendação baseado em IA
+
+Análise automatizada de propostas e perfis
+
+Dashboard interativo para acompanhamento de projetos
+
+🚀 Começando
+Primeiro, inicie o servidor de desenvolvimento:
+
+bash
+Copy
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
-```
+Acesse http://localhost:3000 no seu navegador para visualizar o projeto.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🌟 Funcionalidades-Chave
+IA de Conexão: Algoritmo inteligente para sugerir parcerias ideais
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Geolocalização: Encontre profissionais próximos ou remotos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Avaliações Predittivas: Sistema de reputação com análise de tendências
 
-## Learn More
+Chat Integrado: Comunicação direta com suporte a tradução automática
 
-To learn more about Next.js, take a look at the following resources:
+🛠 Tecnologias Utilizadas
+Next.js 14 (App Router)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Typescript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tailwind CSS
 
-## Deploy on Vercel
+PostgreSQL (Banco de dados principal)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+OpenAI API (Para recursos de IA)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel AI SDK
+
+📚 Aprendendo Next.js
+Para dominar o Next.js, consulte:
+
+Documentação Next.js
+
+Curso Interativo
+
+Repositório GitHub
+
+🌎 Deploy na Vercel
+A forma mais fácil de deployar seu projeto Next.js é usando a plataforma Vercel dos criadores do Next.js.
+
+🤝 Contribuição
+Embora seja um projeto pessoal, sugestões são bem-vindas! Abra uma issue ou faça um fork do repositório.
